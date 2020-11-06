@@ -48,6 +48,7 @@ const GIFT_START_Y = 50;
 const GIFT_WIDTH = 60;
 const GIFT_HEIGHT = 60;
 
+var score = 0;
 var game_over = false;
 
 // ----------------------------------------------------------------------------------------------------
@@ -174,6 +175,7 @@ function drawGifts() {
             }
         } else {
             gifts.splice(i, 1);
+            score += 1;
         }
     }
 }
@@ -243,4 +245,4 @@ function doJob() {
 }
 
 document.onkeydown = move;
-setInterval(doJob, 6);
+setInterval(doJob, 4);
