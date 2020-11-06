@@ -168,6 +168,15 @@ function makeObstacle() {
     }
 }
 
+function makeGift() {
+    if (Math.random() < PROBABILITY) {
+        relative_x = Math.random();
+        if (relative_x > 1/5 && relative_x < 4/5) {
+            gifts.push([(relative_x * ROAD_WIDTH), GIFT_START_Y])
+        }
+    }
+}
+
 function boxesColliding(box) {
     return car_left < box[0] + OBSTACLE_WIDTH &&
         car_left + CAR_WIDTH > box[0] &&
@@ -205,6 +214,7 @@ function doJob() {
         context.fillRect(0, 0, c.width, c.height);
     
         makeObstacle();
+        makeGift();
     
         drawRoad();
         drawObstacles();
