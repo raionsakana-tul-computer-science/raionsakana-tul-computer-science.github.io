@@ -136,8 +136,8 @@ function drawCar() {
     context.fillRect(car_left, CAR_TOP, CAR_WIDTH, CAR_HEIGHT);
 }
 
-function drawBox(x, y) {
-    context.fillRect(x, y, OBSTACLE_WIDTH, OBSTACLE_HEIGHT);
+function drawBox(x, y, width, height) {
+    context.fillRect(x, y, width, height);
 }
 
 function drawObstacles() {
@@ -145,7 +145,7 @@ function drawObstacles() {
 
     for (var i = 0; i < obstacles.length; i++) {
         var x = obstacles[i][0], y = obstacles[i][1];
-        drawBox(x, y);
+        drawBox(x, y, OBSTACLE_WIDTH, OBSTACLE_HEIGHT);
 
         if (!boxesColliding(obstacles[i])) {
             obstacles[i] = [x, y + 1];
@@ -155,6 +155,25 @@ function drawObstacles() {
             }
         } else {
             game_over = true;
+        }
+    }
+}
+
+function drawGifts() {
+    context.fillStyle = 'yellow';
+
+    for (var i = 0; i < gifts.length; i++) {
+        var x = gifts[i][0], y = gifts[i][1];
+        drawBox(x, y, GIFT_WIDTH, GIFT_HEIGHT);
+
+        if (!boxesColliding(gifts[i])) {
+            gifts[i] = [x, y + 1];
+            
+            if (y > c.height) {
+                gifts.splice(i, 1);
+            }
+        } else {
+            gifts.splice(i, 1);
         }
     }
 }
@@ -217,6 +236,7 @@ function doJob() {
         makeGift();
     
         drawRoad();
+        drawGifts();
         drawObstacles();
         drawCar();
     }
