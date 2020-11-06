@@ -1,5 +1,6 @@
 var c = document.getElementById("myCanvas");
 var context = c.getContext("2d");
+context.font = "15px Arial";
 
 // ----------------------------------------------------------------------------------------------------
 
@@ -236,6 +237,16 @@ function draw() {
     drawCar();
 }
 
+function drawInfo() {
+    context.fillStyle = 'darkblue';
+    context.fillText("SCORE: " + score, 10, 20);
+
+    if (game_over) {
+        context.fillStyle = 'darkred';
+        context.fillText("GAME OVER", 10, 50); 
+    }
+}
+
 function doJob() {
     if (!game_over) {
         context.fillStyle = 'lightgreen';
@@ -246,6 +257,8 @@ function doJob() {
     
         draw();
     }
+
+    drawInfo();
 }
 
 document.onkeydown = move;
