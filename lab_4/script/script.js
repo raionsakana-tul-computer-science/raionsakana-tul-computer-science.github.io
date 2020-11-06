@@ -229,6 +229,13 @@ function move(e) {
     } 
 }
 
+function draw() {
+    drawRoad();
+    drawGifts();
+    drawObstacles();
+    drawCar();
+}
+
 function doJob() {
     if (!game_over) {
         context.fillStyle = 'lightgreen';
@@ -237,10 +244,7 @@ function doJob() {
         makeObstacle();
         makeGift();
     
-        drawRoad();
-        drawGifts();
-        drawObstacles();
-        drawCar();
+        draw();
     }
 }
 
