@@ -42,6 +42,12 @@ const OBSTACLE_START_Y = 50;
 const OBSTACLE_WIDTH = 150;
 const OBSTACLE_HEIGHT = 60;
 
+var gifts = [];
+
+const GIFT_START_Y = 50;
+const GIFT_WIDTH = 60;
+const GIFT_HEIGHT = 60;
+
 var game_over = false;
 
 // ----------------------------------------------------------------------------------------------------
@@ -130,7 +136,7 @@ function drawCar() {
     context.fillRect(car_left, CAR_TOP, CAR_WIDTH, CAR_HEIGHT);
 }
 
-function drawObstacle(x, y) {
+function drawBox(x, y) {
     context.fillRect(x, y, OBSTACLE_WIDTH, OBSTACLE_HEIGHT);
 }
 
@@ -139,7 +145,7 @@ function drawObstacles() {
 
     for (var i = 0; i < obstacles.length; i++) {
         var x = obstacles[i][0], y = obstacles[i][1];
-        drawObstacle(x, y);
+        drawBox(x, y);
 
         if (!boxesColliding(obstacles[i])) {
             obstacles[i] = [x, y + 1];
