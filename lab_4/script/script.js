@@ -65,10 +65,10 @@ for (var i = 0; i < number_of_red_white_lines; i++) {
 var car_wheels = [];
 const CAR_WHEELS_MOVE = 15;
 
-car_wheels.push([car_left + (RADIUS / 2), CAR_TOP + CAR_WHEELS_MOVE]);
-car_wheels.push([car_left + (RADIUS / 2), CAR_TOP + CAR_HEIGHT - CAR_WHEELS_MOVE]);
-car_wheels.push([car_left + CAR_WIDTH - (RADIUS / 2), CAR_TOP + CAR_WHEELS_MOVE]);
-car_wheels.push([car_left + CAR_WIDTH - (RADIUS / 2), CAR_TOP + CAR_HEIGHT - CAR_WHEELS_MOVE]);
+car_wheels.push([car_left + (RADIUS / 6), CAR_TOP + CAR_WHEELS_MOVE]);
+car_wheels.push([car_left + (RADIUS / 6), CAR_TOP + CAR_HEIGHT - CAR_WHEELS_MOVE]);
+car_wheels.push([car_left + CAR_WIDTH - (RADIUS / 6), CAR_TOP + CAR_WHEELS_MOVE]);
+car_wheels.push([car_left + CAR_WIDTH - (RADIUS / 6), CAR_TOP + CAR_HEIGHT - CAR_WHEELS_MOVE]);
 
 // ----------------------------------------------------------------------------------------------------
 
@@ -119,15 +119,15 @@ function drawRoad() {
 }
 
 function drawCar() {
-    context.fillStyle = 'darkgreen';
-    context.fillRect(car_left, CAR_TOP, CAR_WIDTH, CAR_HEIGHT);
-
     context.fillStyle = 'black';
     for (var i = 0; i < car_wheels.length; i++) {
         context.beginPath();
         context.arc(car_wheels[i][0], car_wheels[i][1], RADIUS, 0, 2 * Math.PI);
         context.fill();
     }
+
+    context.fillStyle = 'darkgreen';
+    context.fillRect(car_left, CAR_TOP, CAR_WIDTH, CAR_HEIGHT);
 }
 
 function drawObstacle(x, y) {
