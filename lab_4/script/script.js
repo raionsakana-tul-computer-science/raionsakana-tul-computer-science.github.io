@@ -123,7 +123,7 @@ function drawCar() {
     context.fillRect(car_left, CAR_TOP, CAR_WIDTH, CAR_HEIGHT);
 
     context.fillStyle = 'black';
-    for (var i = 0; car_wheels.length; i++) {
+    for (var i = 0; i < car_wheels.length; i++) {
         context.beginPath();
         context.arc(car_wheels[i][0], car_wheels[i][1], RADIUS, 0, 2 * Math.PI);
         context.fill();
@@ -139,7 +139,6 @@ function drawObstacles() {
 
     for (var i = 0; i < obstacles.length; i++) {
         var x = obstacles[i][0], y = obstacles[i][1];
-        console.log(x);
         drawObstacle(x, y);
 
         if (!boxesColliding(obstacles[i])) {
@@ -183,12 +182,12 @@ function checkIfCarTouchObsticle() {
 function move(e) {
     if (e.keyCode == LEFT && car_left > ROAD_LEFT) {
         car_left -= 10;
-        for (var i = 0; car_wheels.length; i++) {
+        for (var i = 0; i < car_wheels.length; i++) {
             car_wheels[i][0] -= 10;
         }
     } else if (e.keyCode == RIGHT && (car_left + CAR_WIDTH) < RED_LINE_RIGHT) {
         car_left += 10;
-        for (var i = 0; car_wheels.length; i++) {
+        for (var i = 0; i < car_wheels.length; i++) {
             car_wheels[i][0] += 10;
         }
     } 
