@@ -280,19 +280,35 @@ function checkIfBulletDestroyedBomb() {
     }
 }
 
-function move(e) {
-    if (e.keyCode == LEFT && car_left > ROAD_LEFT) {
+function turnLeft() {
+    if (car_left > ROAD_LEFT) {
         car_left -= 10;
         for (var i = 0; i < car_wheels.length; i++) {
             car_wheels[i][0] -= 10;
         }
-    } else if (e.keyCode == RIGHT && (car_left + CAR_WIDTH) < RED_LINE_RIGHT) {
+    }
+}
+
+function turnRight() {
+    if ((car_left + CAR_WIDTH) < RED_LINE_RIGHT) {
         car_left += 10;
         for (var i = 0; i < car_wheels.length; i++) {
             car_wheels[i][0] += 10;
         }
+    }
+}
+
+function fire() {
+    bullets.push([(car_left + (CAR_WIDTH / 2)), CAR_TOP])
+}
+
+function move(e) {
+    if (e.keyCode == LEFT) {
+        turnLeft();
+    } else if (e.keyCode == RIGHT) {
+        turnRight();
     } else if (e.keyCode == SPACE) {
-        bullets.push([(car_left + (CAR_WIDTH / 2)), CAR_TOP])
+        fire();
     }
 }
 
