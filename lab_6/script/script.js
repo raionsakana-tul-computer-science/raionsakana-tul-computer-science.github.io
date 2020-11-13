@@ -77,6 +77,12 @@ const BULLET_RADIUS = 10;
 
 // ----------------------------------------------------------------------------------------------------
 
+var is_curve = false;
+var is_curve_left = false;
+var is_curve_right = false;
+
+var curve_value = 0;
+var curve_step = 0;
 
 // ----------------------------------------------------------------------------------------------------
 
@@ -249,6 +255,27 @@ function makeGift() {
 
 // ----------------------------------------------------------------------------------------------------
 
+function doCurve() {
+    if (!is_curve) {
+        if (Math.random() < PROBABILITY) {
+            if (Math.random() > 0.5) {
+                is_curve_left = true;   
+                curve_value = -0.1;
+                curve_step = -0.01;
+            } else {
+                is_curve_right = true;
+                curve_value = 0.1;
+                curve_step = 0.01;
+            }
+
+            is_curve = true;
+            console.log("tyu");
+        }
+    }
+}
+
+// ----------------------------------------------------------------------------------------------------
+
 function boxesColliding(box) {
     return car_left < box[0] + OBSTACLE_WIDTH &&
         car_left + CAR_WIDTH > box[0] &&
@@ -358,6 +385,40 @@ function move(e) {
 // ----------------------------------------------------------------------------------------------------
 
 function draw() {
+    if (is_curve) {
+        if (is_curve_right) {
+            if (curve_value > 0) {
+                if (curve_value < -1) {
+                    curve_step *= -1;
+                }
+                curve_value += curve_step;
+            } else {
+                is_curve_right = false;
+            }
+
+        } else if (is_curve_left) {
+            if (curve_value < 0) {
+                if (curve_value > 1) {
+                    curve_step *= -1;
+                }
+                curve_value += curve_step;
+            } else {
+                is_curve_left = false;
+            }
+        }
+
+
+        if (!is_curve_left && !is_curve_right) {
+            is_curve = false;
+            curve_step = 0;
+            curve_value = 0;
+        }
+
+        context.setTransform(1, 0, curve_step, 1, 0, 0);
+    } else {
+        context.resetTransform();
+    }
+
     drawRoad();
     drawGifts();
     drawObstacles();
@@ -380,13 +441,14 @@ function drawInfo() {
 
 function doJob() {
     if (!game_over) {
+        
         context.fillStyle = 'lightgreen';
         context.fillRect(0, 0, c.width, c.height);
     
         makeObstacle();
         makeGift();
         checkIfBulletDestroyedBomb();
-    
+        doCurve();
         draw();
     }
 
