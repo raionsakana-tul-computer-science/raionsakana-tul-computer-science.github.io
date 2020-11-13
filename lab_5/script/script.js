@@ -6,6 +6,8 @@ context.font = "15px Arial";
 
 const LEFT = 37;
 const RIGHT = 39;
+const SPACE = 32;
+
 const PROBABILITY = 0.005;
 
 // ----------------------------------------------------------------------------------------------------
@@ -51,6 +53,11 @@ const GIFT_HEIGHT = 60;
 
 var score = 0;
 var game_over = false;
+
+
+var bullets = []
+
+const BULLET_RADIUS = 10;
 
 // ----------------------------------------------------------------------------------------------------
 
@@ -181,6 +188,26 @@ function drawGifts() {
     }
 }
 
+function drawBall(x, y, r) {
+    context.beginPath();
+    context.arc(x, y, r, 0, 2 * Math.PI);
+    context.fill();
+}
+
+function drawBullets() {
+    context.fillStyle = 'red';
+
+    for (var i = 0; i < bullets.length; i++) {
+        var x = bullets[i][0], y = bullets[i][1];
+        drawBall(x, y, BULLET_RADIUS);
+        bullets[i] = [x, y - 1];
+        
+        if (y <= 0) {
+            bullets.splice(i, 1);
+        }
+    }
+}
+
 function makeObstacle() {
     if (Math.random() < PROBABILITY) {
         relative_x = Math.random();
@@ -227,7 +254,9 @@ function move(e) {
         for (var i = 0; i < car_wheels.length; i++) {
             car_wheels[i][0] += 10;
         }
-    } 
+    } else if (e.keyCode == SPACE) {
+        bullets.push([(car_left + (CAR_WIDTH / 2)), CAR_TOP])
+    }
 }
 
 function draw() {
@@ -235,6 +264,7 @@ function draw() {
     drawGifts();
     drawObstacles();
     drawCar();
+    drawBullets();
 }
 
 function drawInfo() {
