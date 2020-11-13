@@ -244,27 +244,27 @@ function checkIfCarTouchObsticle() {
 }
 
 function CircleAndRectangleColliding(rect, circle) {
-    var dx = Math.abs(circle[0] - (rect[0] + OBSTACLE_WIDTH / 2));
-    var dy = Math.abs(circle[1] - (rect[1] + rect[1] / 2));
+    var dx = Math.abs(circle[0] - rect[0] - OBSTACLE_WIDTH/2);
+    var dy = Math.abs(circle[1] - rect[1] - OBSTACLE_HEIGHT/2);
 
-    if (dx > BULLET_RADIUS + OBSTACLE_WIDTH / 2) { 
+    if (dx > BULLET_RADIUS + OBSTACLE_WIDTH/2) { 
         return false; 
     }
     
-    if (dy > BULLET_RADIUS + OBSTACLE_HEIGHT / 2) { 
+    if (dy > BULLET_RADIUS + OBSTACLE_HEIGHT/2) { 
         return false; 
     }
 
-    if (dx <= OBSTACLE_WIDTH) { 
+    if (dx <= OBSTACLE_WIDTH/2) { 
         return true; 
     }
     
-    if (dy <= OBSTACLE_HEIGHT) { 
+    if (dy <= OBSTACLE_HEIGHT/2) { 
         return true; 
     }
 
-    var dx = dx - OBSTACLE_WIDTH;
-    var dy = dy - OBSTACLE_HEIGHT;
+    var dx = dx - OBSTACLE_WIDTH/2;
+    var dy = dy - OBSTACLE_HEIGHT/2;
 
     return (dx * dx + dy * dy <= BULLET_RADIUS * BULLET_RADIUS);
 }
