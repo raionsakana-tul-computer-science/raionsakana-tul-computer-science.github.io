@@ -11,7 +11,6 @@ const UP = 38;
 const DOWN = 40;
 
 const SPACE = 32;
-
 const PROBABILITY = 0.005;
 
 // ----------------------------------------------------------------------------------------------------
@@ -23,11 +22,15 @@ const ROAD_WIDTH = 3/5 * c.width;
 const RED_LINE_LEFT = ROAD_LEFT - RED_LINE_WIDTH;
 const RED_LINE_RIGHT = ROAD_LEFT + ROAD_WIDTH;
 
+// ----------------------------------------------------------------------------------------------------
+
 const CAR_WIDTH = 1/10 * c.width;
 const CAR_HEIGHT = 1/6 * c.height;
 
 var car_left = (1/2 * c.width) + (1/6 * ROAD_WIDTH); 
 var CAR_TOP = c.height - CAR_HEIGHT - 20;
+
+// ----------------------------------------------------------------------------------------------------
 
 const WHITE_LINE_WIDTH = 20;
 const WHITE_LINE_LEFT = (1/2 * c.width) - (WHITE_LINE_WIDTH / 2);
@@ -36,6 +39,8 @@ const WHITE_LINE_HEIGHT = 50;
 var number_of_white_lines = c.height / 90;
 var white_lines = [];
 
+// ----------------------------------------------------------------------------------------------------
+
 const WHITE_RED_LINE_HEIGHT = 20;
 
 var number_of_red_white_lines = c.height / 40;
@@ -43,11 +48,15 @@ var white_red_lines = [];
 
 const RADIUS = 10;
 
+// ----------------------------------------------------------------------------------------------------
+
 var obstacles = [];
 
 const OBSTACLE_START_Y = 50;
 const OBSTACLE_WIDTH = 150;
 const OBSTACLE_HEIGHT = 60;
+
+// ----------------------------------------------------------------------------------------------------
 
 var gifts = [];
 
@@ -55,15 +64,19 @@ const GIFT_START_Y = 50;
 const GIFT_WIDTH = 60;
 const GIFT_HEIGHT = 60;
 
+// ----------------------------------------------------------------------------------------------------
+
 var score = 0;
 var game_over = false;
+var interval_time = 6;
 
+// ----------------------------------------------------------------------------------------------------
 
 var bullets = []
-
 const BULLET_RADIUS = 10;
 
-var interval_time = 6;
+// ----------------------------------------------------------------------------------------------------
+
 
 // ----------------------------------------------------------------------------------------------------
 
@@ -214,6 +227,8 @@ function drawBullets() {
     }
 }
 
+// ----------------------------------------------------------------------------------------------------
+
 function makeObstacle() {
     if (Math.random() < PROBABILITY) {
         relative_x = Math.random();
@@ -231,6 +246,8 @@ function makeGift() {
         }
     }
 }
+
+// ----------------------------------------------------------------------------------------------------
 
 function boxesColliding(box) {
     return car_left < box[0] + OBSTACLE_WIDTH &&
@@ -286,6 +303,8 @@ function checkIfBulletDestroyedBomb() {
     }
 }
 
+// ----------------------------------------------------------------------------------------------------
+
 function turnLeft() {
     if (car_left > ROAD_LEFT) {
         car_left -= 10;
@@ -304,6 +323,8 @@ function turnRight() {
     }
 }
 
+// ----------------------------------------------------------------------------------------------------
+
 function fire() {
     bullets.push([(car_left + (CAR_WIDTH / 2)), CAR_TOP])
 }
@@ -317,6 +338,8 @@ function fastUp() {
         interval_time -= 0.1;
     }
 }
+
+// ----------------------------------------------------------------------------------------------------
 
 function move(e) {
     if (e.keyCode == LEFT) {
@@ -332,23 +355,28 @@ function move(e) {
     }
 }
 
+// ----------------------------------------------------------------------------------------------------
+
 function draw() {
     drawRoad();
     drawGifts();
     drawObstacles();
+
     drawCar();
     drawBullets();
 }
 
 function drawInfo() {
     context.fillStyle = 'darkblue';
-    context.fillText("SCORE: " + score, 10, 20);
+    context.fillText("SCORE: " + score, 10, 20);  
 
     if (game_over) {
         context.fillStyle = 'darkred';
         context.fillText("GAME OVER", 10, 50); 
     }
 }
+
+// ----------------------------------------------------------------------------------------------------
 
 function doJob() {
     if (!game_over) {
