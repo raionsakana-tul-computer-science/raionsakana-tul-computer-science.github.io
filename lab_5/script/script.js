@@ -243,6 +243,43 @@ function checkIfCarTouchObsticle() {
     return false;
 }
 
+function CircleAndRectangleColliding(rect, circle) {
+    var dx = Math.abs(circle[0] - (rect[0] + OBSTACLE_WIDTH / 2));
+    var dy = Math.abs(circle[1] - (rect[1] + rect[1] / 2));
+
+    if (dx > BULLET_RADIUS + OBSTACLE_WIDTH / 2) { 
+        return false; 
+    }
+    
+    if (dy > BULLET_RADIUS + OBSTACLE_HEIGHT / 2) { 
+        return false; 
+    }
+
+    if (dx <= OBSTACLE_WIDTH) { 
+        return true; 
+    }
+    
+    if (dy <= OBSTACLE_HEIGHT) { 
+        return true; 
+    }
+
+    var dx = dx - OBSTACLE_WIDTH;
+    var dy = dy - OBSTACLE_HEIGHT;
+
+    return (dx * dx + dy * dy <= BULLET_RADIUS * BULLET_RADIUS);
+}
+
+function checkIfBulletDestroyedBomb() {
+    for (var i = 0; i < bullets.length; i++) {
+        for (var j = 0; j < obstacles.length; j++) {
+            if (CircleAndRectangleColliding(obstacles[j], bullets[i])) {
+                obstacles.splice(j, 1);
+                bullets.splice(i, 1);
+            }
+        }
+    }
+}
+
 function move(e) {
     if (e.keyCode == LEFT && car_left > ROAD_LEFT) {
         car_left -= 10;
@@ -284,6 +321,7 @@ function doJob() {
     
         makeObstacle();
         makeGift();
+        checkIfBulletDestroyedBomb();
     
         draw();
     }
