@@ -1,11 +1,15 @@
 var c = document.getElementById("myCanvas");
 var context = c.getContext("2d");
 context.font = "15px Arial";
+var timer;
 
 // ----------------------------------------------------------------------------------------------------
 
 const LEFT = 37;
 const RIGHT = 39;
+const UP = 38;
+const DOWN = 40;
+
 const SPACE = 32;
 
 const PROBABILITY = 0.005;
@@ -58,6 +62,8 @@ var game_over = false;
 var bullets = []
 
 const BULLET_RADIUS = 10;
+
+var interval_time = 6;
 
 // ----------------------------------------------------------------------------------------------------
 
@@ -302,6 +308,16 @@ function fire() {
     bullets.push([(car_left + (CAR_WIDTH / 2)), CAR_TOP])
 }
 
+function slowDown() {
+    interval_time += 0.1;
+}
+
+function fastUp() {
+    if (interval_time > 0) {
+        interval_time -= 0.1;
+    }
+}
+
 function move(e) {
     if (e.keyCode == LEFT) {
         turnLeft();
@@ -309,6 +325,10 @@ function move(e) {
         turnRight();
     } else if (e.keyCode == SPACE) {
         fire();
+    } else if (e.keyCode == DOWN) {
+        slowDown();
+    } else if (e.keyCode == UP) {
+        fastUp();
     }
 }
 
@@ -343,7 +363,10 @@ function doJob() {
     }
 
     drawInfo();
+    
+    clearInterval(timer);
+    timer = setInterval(doJob, interval_time);
 }
 
 document.onkeydown = move;
-setInterval(doJob, 4);
+timer = setInterval(doJob, interval_time);
