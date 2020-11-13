@@ -15,3 +15,13 @@
     border: 6px solid blueviolet;
     border-radius: 50%;
 }
+
+#content {
+    text-align: center;
+    width: 800px;
+}
+
+#buttons > button {
+    height: 40px;
+    width: 20%;
+}
