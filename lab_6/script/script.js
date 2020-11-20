@@ -357,13 +357,13 @@ function fire() {
     bullets.push([(car_left + (CAR_WIDTH / 2)), CAR_TOP])
 }
 
-function slowDown() {
-    interval_time += 0.1;
+function fastUp() {
+    MOVE += 0.1;
 }
 
-function fastUp() {
-    if (interval_time > 0) {
-        interval_time -= 0.1;
+function slowDown() {
+    if (MOVE > 0) {
+        MOVE -= 0.1;
     }
 }
 
