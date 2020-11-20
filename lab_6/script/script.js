@@ -24,7 +24,7 @@ const RED_LINE_RIGHT = ROAD_LEFT + ROAD_WIDTH;
 
 // ----------------------------------------------------------------------------------------------------
 
-const CAR_WIDTH = 1/10 * c.width;
+const CAR_WIDTH = 1/14 * c.width;
 const CAR_HEIGHT = 1/6 * c.height;
 
 var car_left = (1/2 * c.width) + (1/6 * ROAD_WIDTH); 
@@ -69,6 +69,7 @@ const GIFT_HEIGHT = 60;
 var score = 0;
 var game_over = false;
 var interval_time = 0.005;
+var MOVE = 2;
 
 // ----------------------------------------------------------------------------------------------------
 
@@ -124,7 +125,7 @@ function drawWhiteLines() {
         if (height >= c.height) {
             white_lines[i] = 0 - WHITE_LINE_HEIGHT + 20;
         } else {
-            white_lines[i] = height + 1; 
+            white_lines[i] = height + MOVE; 
         }
     }
 }
@@ -141,7 +142,7 @@ function drawWhiteRedLines() {
         if (height >= c.height) {
             white_red_lines[i] = 0 - WHITE_RED_LINE_HEIGHT + 20;
         } else {
-            white_red_lines[i] = height + 1; 
+            white_red_lines[i] = height + MOVE; 
         }
     }
 }
@@ -182,7 +183,7 @@ function drawObstacles() {
         drawBox(x, y, OBSTACLE_WIDTH, OBSTACLE_HEIGHT);
 
         if (!boxesColliding(obstacles[i])) {
-            obstacles[i] = [x, y + 1];
+            obstacles[i] = [x, y + MOVE];
             
             if (y > c.height) {
                 obstacles.splice(i, 1);
@@ -201,7 +202,7 @@ function drawGifts() {
         drawBox(x, y, GIFT_WIDTH, GIFT_HEIGHT);
 
         if (!boxesColliding(gifts[i])) {
-            gifts[i] = [x, y + 1];
+            gifts[i] = [x, y + MOVE];
             
             if (y > c.height) {
                 gifts.splice(i, 1);
@@ -225,7 +226,7 @@ function drawBullets() {
     for (var i = 0; i < bullets.length; i++) {
         var x = bullets[i][0], y = bullets[i][1];
         drawBall(x, y, BULLET_RADIUS);
-        bullets[i] = [x, y - 1];
+        bullets[i] = [x, y - MOVE];
         
         if (y <= 0) {
             bullets.splice(i, 1);
