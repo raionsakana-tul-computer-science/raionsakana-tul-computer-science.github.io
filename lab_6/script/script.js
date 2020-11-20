@@ -399,23 +399,27 @@ function draw() {
             } else if (rotate_step >= 20 && rotate_step < 40) {
                 rotate_value -= angle;
             }
+            rotate_step += 1;
         } else if (rotate_left) {
             if (rotate_step < 20) {
                 rotate_value -= angle;
             } else if (rotate_step >= 20 && rotate_step < 40) {
                 rotate_value += angle;
             }
+            rotate_step += 1;
         }
-        rotate_step += 1;
+        
+        if (rotate_step > 40) {
+            rotate = !rotate;
+            rotate_left = !rotate_left;
+            rotate_right = !rotate_right;
+            rotate_step = 0;
+            rotate_value = 0;
+        } 
+
         context.translate(context.width / 2, context.height / 2);
         context.rotate(rotate_value * Math.PI / 180);
-        context.translate(context.width / 2, -context.height / 2);
-    } else {
-        rotate = !rotate;
-        rotate_left = !rotate_left;
-        rotate_right = !rotate_right;
-        rotate_step = 0;
-        rotate_value = 0;
+        context.translate(-context.width / 2, -context.height / 2);
     }
 
     drawRoad();
