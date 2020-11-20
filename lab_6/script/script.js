@@ -68,7 +68,7 @@ const GIFT_HEIGHT = 60;
 
 var score = 0;
 var game_over = false;
-var interval_time = 6;
+var interval_time = 0.005;
 
 // ----------------------------------------------------------------------------------------------------
 
