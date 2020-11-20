@@ -15,6 +15,11 @@ const PROBABILITY = 0.005;
 
 // ----------------------------------------------------------------------------------------------------
 
+var ROAD_Y = -1000;
+var ROAD_HEIGHT = c.height + 1000;
+
+// ----------------------------------------------------------------------------------------------------
+
 const RED_LINE_WIDTH = 20;
 const ROAD_LEFT = 1/5 * c.width;
 const ROAD_WIDTH = 3/5 * c.width;
@@ -36,14 +41,14 @@ const WHITE_LINE_WIDTH = 20;
 const WHITE_LINE_LEFT = (1/2 * c.width) - (WHITE_LINE_WIDTH / 2);
 const WHITE_LINE_HEIGHT = 50;
 
-var number_of_white_lines = c.height / 90;
+var number_of_white_lines = ROAD_HEIGHT/ 90;
 var white_lines = [];
 
 // ----------------------------------------------------------------------------------------------------
 
 const WHITE_RED_LINE_HEIGHT = 20;
 
-var number_of_red_white_lines = c.height / 40;
+var number_of_red_white_lines = ROAD_HEIGHT / 40;
 var white_red_lines = [];
 
 const RADIUS = 10;
@@ -78,23 +83,23 @@ const BULLET_RADIUS = 10;
 
 // ----------------------------------------------------------------------------------------------------
 
-var is_curve = false;
-var is_curve_left = false;
-var is_curve_right = false;
+var rotate = false;
+var rotate_right = false;
+var rotate_left = false;
 
-var curve_value = 0;
-var curve_step = 0;
+var rotate_value = 0;
+var rotate_step = 0;
 
 // ----------------------------------------------------------------------------------------------------
 
-var height_temp = 0;
+var height_temp = ROAD_Y;
 
 for (var i = 0; i < number_of_white_lines; i++) {
     white_lines.push(height_temp);
     height_temp += 90;  
 }
 
-height_temp = 0;
+height_temp = ROAD_Y;
 
 for (var i = 0; i < number_of_red_white_lines; i++) {
     white_red_lines.push(height_temp);
@@ -122,7 +127,7 @@ function drawWhiteLines() {
         var height = white_lines[i];
         context.fillRect(WHITE_LINE_LEFT, height, WHITE_LINE_WIDTH, WHITE_LINE_HEIGHT);
 
-        if (height >= c.height) {
+        if (height >= ROAD_HEIGHT) {
             white_lines[i] = 0 - WHITE_LINE_HEIGHT + 20;
         } else {
             white_lines[i] = height + MOVE; 
@@ -139,7 +144,7 @@ function drawWhiteRedLines() {
         context.fillRect(RED_LINE_LEFT, height, WHITE_LINE_WIDTH, WHITE_RED_LINE_HEIGHT);
         context.fillRect(RED_LINE_RIGHT, height, WHITE_LINE_WIDTH, WHITE_RED_LINE_HEIGHT);
 
-        if (height >= c.height) {
+        if (height >= ROAD_HEIGHT) {
             white_red_lines[i] = 0 - WHITE_RED_LINE_HEIGHT + 20;
         } else {
             white_red_lines[i] = height + MOVE; 
@@ -149,11 +154,11 @@ function drawWhiteRedLines() {
 
 function drawRoad() {
     context.fillStyle = 'gray';
-    context.fillRect(ROAD_LEFT, 0, ROAD_WIDTH, c.height);
+    context.fillRect(ROAD_LEFT, ROAD_Y, ROAD_WIDTH, ROAD_HEIGHT);
 
     context.fillStyle = 'red';
-    context.fillRect(RED_LINE_LEFT, 0, RED_LINE_WIDTH, c.height);
-    context.fillRect(RED_LINE_RIGHT, 0, RED_LINE_WIDTH, c.height);
+    context.fillRect(RED_LINE_LEFT, ROAD_Y, RED_LINE_WIDTH, ROAD_HEIGHT);
+    context.fillRect(RED_LINE_RIGHT, ROAD_Y, RED_LINE_WIDTH, ROAD_HEIGHT);
 
     drawWhiteLines();
     drawWhiteRedLines();
@@ -185,7 +190,7 @@ function drawObstacles() {
         if (!boxesColliding(obstacles[i])) {
             obstacles[i] = [x, y + MOVE];
             
-            if (y > c.height) {
+            if (y > ROAD_HEIGHT) {
                 obstacles.splice(i, 1);
             }
         } else {
@@ -204,7 +209,7 @@ function drawGifts() {
         if (!boxesColliding(gifts[i])) {
             gifts[i] = [x, y + MOVE];
             
-            if (y > c.height) {
+            if (y > ROAD_HEIGHT) {
                 gifts.splice(i, 1);
             }
         } else {
@@ -257,20 +262,14 @@ function makeGift() {
 // ----------------------------------------------------------------------------------------------------
 
 function doCurve() {
-    if (!is_curve) {
+    if (!rotate) {
         if (Math.random() < PROBABILITY) {
             if (Math.random() > 0.5) {
-                is_curve_left = true;   
-                curve_value = -0.1;
-                curve_step = -0.01;
+                rotate_left = true;   
             } else {
-                is_curve_right = true;
-                curve_value = 0.1;
-                curve_step = 0.01;
+                rotate_right = true;
             }
-
-            is_curve = true;
-            console.log("tyu");
+            rotate = true;
         }
     }
 }
@@ -371,53 +370,52 @@ function slowDown() {
 
 function move(e) {
     if (e.keyCode == LEFT) {
+        e.preventDefault();
         turnLeft();
     } else if (e.keyCode == RIGHT) {
+        e.preventDefault()
         turnRight();
     } else if (e.keyCode == SPACE) {
+        e.preventDefault()
         fire();
     } else if (e.keyCode == DOWN) {
+        e.preventDefault()
         slowDown();
     } else if (e.keyCode == UP) {
+        e.preventDefault()
         fastUp();
     }
 }
 
 // ----------------------------------------------------------------------------------------------------
 
+var angle = 0.01; 
+
 function draw() {
-    if (is_curve) {
-        if (is_curve_right) {
-            if (curve_value > 0) {
-                if (curve_value < -1) {
-                    curve_step *= -1;
-                }
-                curve_value += curve_step;
-            } else {
-                is_curve_right = false;
+    if (rotate) {
+        if (rotate_right) {
+            if (rotate_step < 20) {
+                rotate_value += angle;
+            } else if (rotate_step >= 20 && rotate_step < 40) {
+                rotate_value -= angle;
             }
-
-        } else if (is_curve_left) {
-            if (curve_value < 0) {
-                if (curve_value > 1) {
-                    curve_step *= -1;
-                }
-                curve_value += curve_step;
-            } else {
-                is_curve_left = false;
+        } else if (rotate_left) {
+            if (rotate_step < 20) {
+                rotate_value -= angle;
+            } else if (rotate_step >= 20 && rotate_step < 40) {
+                rotate_value += angle;
             }
         }
-
-
-        if (!is_curve_left && !is_curve_right) {
-            is_curve = false;
-            curve_step = 0;
-            curve_value = 0;
-        }
-
-        context.setTransform(1, 0, curve_step, 1, 0, 0);
+        rotate_step += 1;
+        context.translate(context.width / 2, context.height / 2);
+        context.rotate(rotate_value * Math.PI / 180);
+        context.translate(context.width / 2, -context.height / 2);
     } else {
-        context.resetTransform();
+        rotate = !rotate;
+        rotate_left = !rotate_left;
+        rotate_right = !rotate_right;
+        rotate_step = 0;
+        rotate_value = 0;
     }
 
     drawRoad();
