@@ -471,10 +471,10 @@ acl.addEventListener('reading', () => {
       turnLeft();
   }
 
-  if (acl.y < 0) {
-    fastUp();
-  } else if (acl.y > 0) {
+  if (acl.z < 5) {
     slowDown();
+} else if (acl.z > 5) {
+    fastUp();
   }
 });
 
