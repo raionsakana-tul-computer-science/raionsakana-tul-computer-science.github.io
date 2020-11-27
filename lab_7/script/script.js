@@ -465,9 +465,9 @@ function doJob() {
 let acl = new Accelerometer({frequency: 60});
 
 acl.addEventListener('reading', () => {
-  if (acl.x < 0) {
+  if (acl.x < -4) {
     turnRight();
-  } else if (acl.x > 0) {
+  } else if (acl.x > 4) {
       turnLeft();
   }
 
