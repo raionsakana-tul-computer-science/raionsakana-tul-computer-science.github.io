@@ -395,22 +395,22 @@ var angle = 0.01;
 function draw() {
     if (rotate) {
         if (rotate_right) {
-            if (rotate_step < 20) {
+            if (rotate_step < 10) {
                 rotate_value += angle;
-            } else if (rotate_step >= 20 && rotate_step < 40) {
+            } else if (rotate_step >= 10 && rotate_step < 20) {
                 rotate_value -= angle;
             }
             rotate_step += 1;
         } else if (rotate_left) {
-            if (rotate_step < 20) {
+            if (rotate_step < 10) {
                 rotate_value -= angle;
-            } else if (rotate_step >= 20 && rotate_step < 40) {
+            } else if (rotate_step >= 10 && rotate_step < 20) {
                 rotate_value += angle;
             }
             rotate_step += 1;
         }
         
-        if (rotate_step > 40) {
+        if (rotate_step > 20) {
             rotate = !rotate;
             rotate_left = !rotate_left;
             rotate_right = !rotate_right;
