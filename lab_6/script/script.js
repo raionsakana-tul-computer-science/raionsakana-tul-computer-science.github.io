@@ -462,22 +462,5 @@ function doJob() {
     timer = setInterval(doJob, interval_time);
 }
 
-var last = 0;
-let acl = new Accelerometer({frequency: 60});
-
-acl.addEventListener('reading', () => {
-  console.log("Acceleration along the X-axis " + acl.x);
-  console.log("Acceleration along the Y-axis " + acl.y);
-  console.log("Acceleration along the Z-axis " + acl.z);
-
-  if (acl.x > 0) {
-    turnRight();
-  } else if (acl.y < 0) {
-      turnLeft();
-  }
-});
-
-acl.start();
-
 document.onkeydown = move;
 timer = setInterval(doJob, interval_time);
