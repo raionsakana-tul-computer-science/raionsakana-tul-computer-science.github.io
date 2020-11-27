@@ -335,18 +335,18 @@ function checkIfBulletDestroyedBomb() {
 
 function turnLeft() {
     if (car_left > ROAD_LEFT) {
-        car_left -= 10;
+        car_left -= 20;
         for (var i = 0; i < car_wheels.length; i++) {
-            car_wheels[i][0] -= 10;
+            car_wheels[i][0] -= 20;
         }
     }
 }
 
 function turnRight() {
     if ((car_left + CAR_WIDTH) < RED_LINE_RIGHT) {
-        car_left += 10;
+        car_left += 20;
         for (var i = 0; i < car_wheels.length; i++) {
-            car_wheels[i][0] += 10;
+            car_wheels[i][0] += 20;
         }
     }
 }
