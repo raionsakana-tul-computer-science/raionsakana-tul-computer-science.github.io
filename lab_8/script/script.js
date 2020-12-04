@@ -359,7 +359,7 @@ function fire() {
 }
 
 function fastUp() {
-    if (MOVE < 8) {
+    if (MOVE < 4) {
         MOVE += 0.1;
     }
 }
@@ -490,8 +490,6 @@ window.addEventListener( "devicemotion", (event) => {
     } else if (event.accelerationIncludingGravity.x > accelerometer.right) {
         turnLeft();
     }
-
-    console.log(event.accelerationIncludingGravity.z)
     
     if (Math.abs(event.accelerationIncludingGravity.z) < accelerometer.speed) {
         slowDown();
