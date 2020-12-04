@@ -3,6 +3,7 @@ var context = c.getContext("2d");
 context.font = "15px Arial";
 var timer;
 
+var accelerometer = {barrierZ: 8, speedZ: 2, speedX: 4}
 
 // ----------------------------------------------------------------------------------------------------
 
@@ -462,23 +463,46 @@ function doJob() {
     timer = setInterval(doJob, interval_time);
 }
 
-let acl = new Accelerometer({frequency: 60});
+// let acl = new Accelerometer({frequency: 60});
 
-acl.addEventListener('reading', () => {
-  if (acl.x < -4) {
-    turnRight();
-  } else if (acl.x > 4) {
-      turnLeft();
-  }
+// acl.addEventListener('reading', () => {
+//   if (acl.x < -4) {
+//     turnRight();
+//   } else if (acl.x > 4) {
+//       turnLeft();
+//   }
 
-  if (acl.z < 2) {
-    slowDown();
-} else if (acl.z > 8) {
-    fastUp();
-  }
-});
+//   if (acl.z < 2) {
+//     slowDown();
+// } else if (acl.z > 8) {
+//     fastUp();
+//   }
+// });
 
 
-acl.start();
+// acl.start();
+
+window.addEventListener( "devicemotion", (event) => {
+    if (event.accelerationIncludingGravity.x < -4) {
+        turnRight();
+    } else if (event.accelerationIncludingGravity.x > 4) {
+        turnLeft();
+    }
+
+    // player.x -= playerMovement.speed * (event.accelerationIncludingGravity.x * accelerometer.speedX / (time.second / time.fps));
+    
+    // if (Math.abs(event.accelerationIncludingGravity.z) > accelerometer.barrierZ) {
+    //     updateSpeed(event.accelerationIncludingGravity.z * accelerometer.speedZ / (time.second / time.fps), false);
+    // } else if (Math.abs(event.accelerationIncludingGravity.z) <= accelerometer.barrierZ) {
+    //     updateSpeed(-event.accelerationIncludingGravity.z * accelerometer.speedZ * 10 / (time.second / time.fps), false);
+    // }
+
+    // if (routeCenterElement.speed > 80) {
+    //     updateSpeed(80, true);
+    // } else if (routeCenterElement.speed < 5) {
+    //     updateSpeed(5, true);
+    // }
+})
+
 document.onkeydown = move;
 timer = setInterval(doJob, interval_time);
