@@ -465,19 +465,33 @@ function doJob() {
     timer = setInterval(doJob, interval_time);
 }
 
-window.addEventListener( "devicemotion", (event) => {
-    if (event.accelerationIncludingGravity.x < accelerometer.left) {
-        turnRight();
-    } else if (event.accelerationIncludingGravity.x > accelerometer.right) {
-        turnLeft();
+function permission() {
+    if (typeof(DeviceMotionEvent) !== "undefined" && typeof(DeviceMotionEvent.requestPermission) === "function") {
+        DeviceMotionEvent.requestPermission().then(response => {
+            if (response == "granted") {
+                useDeviceMotion();
+            }
+        }).catch(console.error)
+    } else {
+        useDeviceMotion();
     }
-    
-    if (Math.abs(event.accelerationIncludingGravity.z) < accelerometer.speedDown) {
-        slowDown();
-    } else if (Math.abs(event.accelerationIncludingGravity.z) >= accelerometer.speedUp) {
-        fastUp();
-    }
-})
+}
+
+function useDeviceMotion() {
+    window.addEventListener( "devicemotion", (event) => {
+        if (event.accelerationIncludingGravity.x < accelerometer.left) {
+            turnRight();
+        } else if (event.accelerationIncludingGravity.x > accelerometer.right) {
+            turnLeft();
+        }
+        
+        if (Math.abs(event.accelerationIncludingGravity.z) < accelerometer.speedDown) {
+            slowDown();
+        } else if (Math.abs(event.accelerationIncludingGravity.z) >= accelerometer.speedUp) {
+            fastUp();
+        }
+    })
+}
 
 document.onkeydown = move;
 timer = setInterval(doJob, interval_time);
