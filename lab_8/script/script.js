@@ -3,7 +3,7 @@ var context = c.getContext("2d");
 context.font = "15px Arial";
 var timer;
 
-var accelerometer = {barrierZ: 8, speedZ: 2, speedX: 4}
+var accelerometer = {left: -2, right: 2, speedX: 4}
 
 // ----------------------------------------------------------------------------------------------------
 
@@ -483,9 +483,9 @@ function doJob() {
 // acl.start();
 
 window.addEventListener( "devicemotion", (event) => {
-    if (event.accelerationIncludingGravity.x < -4) {
+    if (event.accelerationIncludingGravity.x < accelerometer.left) {
         turnRight();
-    } else if (event.accelerationIncludingGravity.x > 4) {
+    } else if (event.accelerationIncludingGravity.x > accelerometer.right) {
         turnLeft();
     }
 
