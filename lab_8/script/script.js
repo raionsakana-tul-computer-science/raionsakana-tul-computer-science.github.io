@@ -3,7 +3,7 @@ var context = c.getContext("2d");
 context.font = "15px Arial";
 var timer;
 
-var accelerometer = {left: -2, right: 2, speed: 4}
+var accelerometer = {left: -2, right: 2, speedUp: 7, speedDown: 4}
 
 // ----------------------------------------------------------------------------------------------------
 
@@ -359,14 +359,14 @@ function fire() {
 }
 
 function fastUp() {
-    if (MOVE < 4) {
-        MOVE += 0.1;
+    if (MOVE < 3) {
+        MOVE += 0.05;
     }
 }
 
 function slowDown() {
     if (MOVE > 0) {
-        MOVE -= 0.1;
+        MOVE -= 0.05;
     }
 }
 
@@ -465,25 +465,6 @@ function doJob() {
     timer = setInterval(doJob, interval_time);
 }
 
-// let acl = new Accelerometer({frequency: 60});
-
-// acl.addEventListener('reading', () => {
-//   if (acl.x < -4) {
-//     turnRight();
-//   } else if (acl.x > 4) {
-//       turnLeft();
-//   }
-
-//   if (acl.z < 2) {
-//     slowDown();
-// } else if (acl.z > 8) {
-//     fastUp();
-//   }
-// });
-
-
-// acl.start();
-
 window.addEventListener( "devicemotion", (event) => {
     if (event.accelerationIncludingGravity.x < accelerometer.left) {
         turnRight();
@@ -491,9 +472,9 @@ window.addEventListener( "devicemotion", (event) => {
         turnLeft();
     }
     
-    if (Math.abs(event.accelerationIncludingGravity.z) < accelerometer.speed) {
+    if (Math.abs(event.accelerationIncludingGravity.z) < accelerometer.speedDown) {
         slowDown();
-    } else if (Math.abs(event.accelerationIncludingGravity.z) >= accelerometer.speed) {
+    } else if (Math.abs(event.accelerationIncludingGravity.z) >= accelerometer.speedUp) {
         fastUp();
     }
 })
