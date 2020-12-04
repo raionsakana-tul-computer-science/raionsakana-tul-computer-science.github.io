@@ -336,18 +336,18 @@ function checkIfBulletDestroyedBomb() {
 
 function turnLeft() {
     if (car_left > ROAD_LEFT) {
-        car_left -= 20;
+        car_left -= 7;
         for (var i = 0; i < car_wheels.length; i++) {
-            car_wheels[i][0] -= 20;
+            car_wheels[i][0] -= 7;
         }
     }
 }
 
 function turnRight() {
     if ((car_left + CAR_WIDTH) < RED_LINE_RIGHT) {
-        car_left += 20;
+        car_left += 7;
         for (var i = 0; i < car_wheels.length; i++) {
-            car_wheels[i][0] += 20;
+            car_wheels[i][0] += 7;
         }
     }
 }
@@ -469,16 +469,32 @@ function permission() {
     if (typeof(DeviceMotionEvent) !== "undefined" && typeof(DeviceMotionEvent.requestPermission) === "function") {
         DeviceMotionEvent.requestPermission().then(response => {
             if (response == "granted") {
-                useDeviceMotion();
+                useDeviceMotionIOS();
             }
         }).catch(console.error)
     } else {
-        useDeviceMotion();
+        useDeviceMotionAndroid();
     }
 }
 
-function useDeviceMotion() {
-    window.addEventListener( "devicemotion", (event) => {
+function useDeviceMotionAndroid() {
+    window.addEventListener("devicemotion", (event) => {
+        if (event.accelerationIncludingGravity.x < accelerometer.left) {
+            turnRight();
+        } else if (event.accelerationIncludingGravity.x > accelerometer.right) {
+            turnLeft();
+        }
+        
+        if (Math.abs(event.accelerationIncludingGravity.z) < accelerometer.speedDown) {
+            slowDown();
+        } else if (Math.abs(event.accelerationIncludingGravity.z) >= accelerometer.speedUp) {
+            fastUp();
+        }
+    })
+}
+
+function useDeviceMotionIOS() {
+    window.addEventListener("devicemotion", (event) => {
         if (event.accelerationIncludingGravity.x < accelerometer.left) {
             turnLeft();
         } else if (event.accelerationIncludingGravity.x > accelerometer.right) {
