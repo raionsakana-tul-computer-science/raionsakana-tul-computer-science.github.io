@@ -3,7 +3,7 @@ var context = c.getContext("2d");
 context.font = "15px Arial";
 var timer;
 
-var accelerometer = {left: -2, right: 2, speedX: 4}
+var accelerometer = {left: -2, right: 2, speed: 4}
 
 // ----------------------------------------------------------------------------------------------------
 
@@ -359,7 +359,9 @@ function fire() {
 }
 
 function fastUp() {
-    MOVE += 0.1;
+    if (MOVE < 8) {
+        MOVE += 0.1;
+    }
 }
 
 function slowDown() {
@@ -488,20 +490,12 @@ window.addEventListener( "devicemotion", (event) => {
     } else if (event.accelerationIncludingGravity.x > accelerometer.right) {
         turnLeft();
     }
-
-    // player.x -= playerMovement.speed * (event.accelerationIncludingGravity.x * accelerometer.speedX / (time.second / time.fps));
     
-    // if (Math.abs(event.accelerationIncludingGravity.z) > accelerometer.barrierZ) {
-    //     updateSpeed(event.accelerationIncludingGravity.z * accelerometer.speedZ / (time.second / time.fps), false);
-    // } else if (Math.abs(event.accelerationIncludingGravity.z) <= accelerometer.barrierZ) {
-    //     updateSpeed(-event.accelerationIncludingGravity.z * accelerometer.speedZ * 10 / (time.second / time.fps), false);
-    // }
-
-    // if (routeCenterElement.speed > 80) {
-    //     updateSpeed(80, true);
-    // } else if (routeCenterElement.speed < 5) {
-    //     updateSpeed(5, true);
-    // }
+    if (Math.abs(event.accelerationIncludingGravity.z) > accelerometer.speed) {
+        slowDown();
+    } else if (Math.abs(event.accelerationIncludingGravity.z) <= accelerometer.speed) {
+        fastUp();
+    }
 })
 
 document.onkeydown = move;
