@@ -334,20 +334,40 @@ function checkIfBulletDestroyedBomb() {
 
 // ----------------------------------------------------------------------------------------------------
 
-function turnLeft() {
-    if (car_left > ROAD_LEFT) {
-        car_left -= 7;
-        for (var i = 0; i < car_wheels.length; i++) {
-            car_wheels[i][0] -= 7;
+function turnLeft(move) {
+    if (move != null) {
+        move = abs(move);
+        if (car_left > ROAD_LEFT) {
+            car_left -= move;
+            for (var i = 0; i < car_wheels.length; i++) {
+                car_wheels[i][0] -= move;
+            }
+        }
+    } else {
+        if (car_left > ROAD_LEFT) {
+            car_left -= 7;
+            for (var i = 0; i < car_wheels.length; i++) {
+                car_wheels[i][0] -= 7;
+            }
         }
     }
 }
 
-function turnRight() {
-    if ((car_left + CAR_WIDTH) < RED_LINE_RIGHT) {
-        car_left += 7;
-        for (var i = 0; i < car_wheels.length; i++) {
-            car_wheels[i][0] += 7;
+function turnRight(move) {
+    if (move != null) {
+        move = abs(move);
+        if ((car_left + CAR_WIDTH) < RED_LINE_RIGHT) {
+            car_left += move;
+            for (var i = 0; i < car_wheels.length; i++) {
+                car_wheels[i][0] += move;
+            }
+        }
+    } else {
+        if ((car_left + CAR_WIDTH) < RED_LINE_RIGHT) {
+            car_left += 7;
+            for (var i = 0; i < car_wheels.length; i++) {
+                car_wheels[i][0] += 7;
+            }
         }
     }
 }
@@ -375,10 +395,10 @@ function slowDown() {
 function move(e) {
     if (e.keyCode == LEFT) {
         e.preventDefault();
-        turnLeft();
+        turnLeft(null);
     } else if (e.keyCode == RIGHT) {
         e.preventDefault()
-        turnRight();
+        turnRight(null);
     } else if (e.keyCode == SPACE) {
         e.preventDefault()
         fire();
@@ -496,9 +516,9 @@ function useDeviceMotionAndroid() {
 function useDeviceMotionIOS() {
     window.addEventListener("devicemotion", (event) => {
         if (event.accelerationIncludingGravity.x < accelerometer.left) {
-            turnLeft();
+            turnLeft(event.accelerationIncludingGravity.x);
         } else if (event.accelerationIncludingGravity.x > accelerometer.right) {
-            turnRight();
+            turnRight(event.accelerationIncludingGravity.x);
         }
         
         if (Math.abs(event.accelerationIncludingGravity.z) < accelerometer.speedDown) {
