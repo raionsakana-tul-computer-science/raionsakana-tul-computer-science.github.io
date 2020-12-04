@@ -480,9 +480,9 @@ function permission() {
 function useDeviceMotion() {
     window.addEventListener( "devicemotion", (event) => {
         if (event.accelerationIncludingGravity.x < accelerometer.left) {
-            turnRight();
-        } else if (event.accelerationIncludingGravity.x > accelerometer.right) {
             turnLeft();
+        } else if (event.accelerationIncludingGravity.x > accelerometer.right) {
+            turnRight();
         }
         
         if (Math.abs(event.accelerationIncludingGravity.z) < accelerometer.speedDown) {
