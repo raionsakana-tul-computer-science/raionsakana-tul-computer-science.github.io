@@ -491,9 +491,9 @@ window.addEventListener( "devicemotion", (event) => {
         turnLeft();
     }
     
-    if (Math.abs(event.accelerationIncludingGravity.z) > accelerometer.speed) {
+    if (Math.abs(event.accelerationIncludingGravity.z) < accelerometer.speed) {
         slowDown();
-    } else if (Math.abs(event.accelerationIncludingGravity.z) <= accelerometer.speed) {
+    } else if (Math.abs(event.accelerationIncludingGravity.z) >= accelerometer.speed) {
         fastUp();
     }
 })
