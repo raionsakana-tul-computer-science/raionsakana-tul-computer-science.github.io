@@ -1,0 +1,27 @@
+#score-container {
+    position: fixed;
+    top: 40px;
+    right: 40px;
+    text-align: center;
+    font-size: 14px;
+}
+
+#score {
+    height: 70px;
+    width: 70px;
+    line-height: 70px;
+    font-size: 30px;
+    background-color: aquamarine;
+    border: 6px solid blueviolet;
+    border-radius: 50%;
+}
+
+#content {
+    text-align: center;
+    width: 800px;
+}
+
+#buttons > button {
+    height: 240px;
+    width: 100%;
+}
