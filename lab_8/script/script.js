@@ -490,6 +490,8 @@ window.addEventListener( "devicemotion", (event) => {
     } else if (event.accelerationIncludingGravity.x > accelerometer.right) {
         turnLeft();
     }
+
+    console.log(event.accelerationIncludingGravity.z)
     
     if (Math.abs(event.accelerationIncludingGravity.z) < accelerometer.speed) {
         slowDown();
