@@ -504,12 +504,6 @@ function useDeviceMotionAndroid() {
         } else if (event.accelerationIncludingGravity.x > accelerometer.right) {
             turnLeft();
         }
-        
-        if (Math.abs(event.accelerationIncludingGravity.z) < accelerometer.speedDown) {
-            slowDown();
-        } else if (Math.abs(event.accelerationIncludingGravity.z) >= accelerometer.speedUp) {
-            fastUp();
-        }
     })
 }
 
@@ -519,12 +513,6 @@ function useDeviceMotionIOS() {
             turnLeft(event.accelerationIncludingGravity.x);
         } else if (event.accelerationIncludingGravity.x > accelerometer.right) {
             turnRight(event.accelerationIncludingGravity.x);
-        }
-        
-        if (Math.abs(event.accelerationIncludingGravity.z) < accelerometer.speedDown) {
-            slowDown();
-        } else if (Math.abs(event.accelerationIncludingGravity.z) >= accelerometer.speedUp) {
-            fastUp();
         }
     })
 }
