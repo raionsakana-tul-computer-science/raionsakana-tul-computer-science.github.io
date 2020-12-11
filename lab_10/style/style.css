@@ -1,31 +1,21 @@
 * {
     touch-action: manipulation;
+    margin: 0;
+    padding: 0;
 }
 
-#score-container {
-    position: fixed;
-    top: 40px;
-    right: 40px;
-    text-align: center;
-    font-size: 14px;
+#myCanvas, #buttons {
+    margin: 0;
+    padding: 0;
 }
 
-#score {
-    height: 70px;
-    width: 70px;
-    line-height: 70px;
-    font-size: 30px;
-    background-color: aquamarine;
-    border: 6px solid blueviolet;
-    border-radius: 50%;
-}
-
-#content {
-    text-align: center;
-    width: 600px;
+#buttons {
+    width: 100%;
 }
 
 #buttons > button {
     height: 140px;
     width: 100%;
+    background-color: burlywood;
+    border: none;
 }
