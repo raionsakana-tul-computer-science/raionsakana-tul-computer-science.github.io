@@ -499,9 +499,9 @@ function permission() {
 
 function useDeviceMotionAndroid() {
     window.addEventListener("deviceorientation", (event) => {
-        if (event.gamma < accelerometer.left) {
+        if (event.gamma > accelerometer.left) {
             turnRight();
-        } else if (event.gamma > accelerometer.right) {
+        } else if (event.gamma < accelerometer.right) {
             turnLeft();
         }
     })
