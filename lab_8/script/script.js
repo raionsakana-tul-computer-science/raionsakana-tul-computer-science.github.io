@@ -3,6 +3,7 @@ var context = c.getContext("2d");
 context.font = "15px Arial";
 var timer;
 
+
 var accelerometer = {left: -2, right: 2, speedUp: 7, speedDown: 4}
 
 // ----------------------------------------------------------------------------------------------------
