@@ -1,0 +1,21 @@
+* {
+    touch-action: manipulation;
+    margin: 0;
+    padding: 0;
+}
+
+#myCanvas, #buttons {
+    margin: 0;
+    padding: 0;
+}
+
+#buttons {
+    width: 100%;
+}
+
+#buttons > button {
+    height: 140px;
+    width: 100%;
+    background-color: burlywood;
+    border: none;
+}
