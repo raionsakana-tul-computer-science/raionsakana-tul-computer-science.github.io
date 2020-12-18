@@ -32,6 +32,22 @@ function drawPlayer() {
     context.fillRect(player.positionX, player.positionY, player.width, player.height);
 }
 
+function move(e) {
+    e.preventDefault();
+
+    if (e.keyCode == LEFT) {
+        turn(playerMove.left);
+    } else if (e.keyCode == RIGHT) {
+        turn(playerMove.right);
+    }
+}
+
+function turn(move) {
+    if ((player.positionX + move) > 0 && ((player.positionX + player.width) + move) < c.width) {
+        player.positionX += move;
+    }
+}
+
 function permission() {
     if (typeof(DeviceMotionEvent) !== "undefined" && typeof(DeviceMotionEvent.requestPermission) === "function") {
         DeviceMotionEvent.requestPermission().then(response => {
@@ -49,9 +65,9 @@ function permission() {
 function useDeviceMotionAndroid() {
     window.addEventListener("deviceorientation", (event) => {
         if (event.gamma > accelerometer.left) {
-            turnRight();
+            turn(playerMove.right);
         } else if (event.gamma < accelerometer.right) {
-            turnLeft();
+            turn(playerMove.left);
         }
     })
 }
@@ -59,9 +75,9 @@ function useDeviceMotionAndroid() {
 function useDeviceMotionIOS() {
     window.addEventListener("deviceorientation", (event) => {
         if (event.gamma < accelerometer.left) {
-            turnLeft();
+            turn(playerMove.left);
         } else if (event.gamma > accelerometer.right) {
-            turnRight();
+            turn(playerMove.right);
         }
     })
 }

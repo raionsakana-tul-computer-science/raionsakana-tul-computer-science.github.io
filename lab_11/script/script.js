@@ -37,11 +37,11 @@ function mainFunctionOfGame() {
     drawBoxes();
     drawPlayer();
 
-    
+
     clearInterval(timer);
-    timer = setInterval(mainFunctionOfGame, interval_time);
+    timer = setInterval(mainFunctionOfGame, INTERVAL_TIME);
 }
 
 context.beginPath();
 mainFunctionOfGame();
-// document.onkeydown = move;
+document.onkeydown = move;
