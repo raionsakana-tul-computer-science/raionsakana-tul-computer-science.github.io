@@ -23,9 +23,10 @@ const PROBABILITY = 0.005;
 
 const boxWidth = 0.05 * c.width;
 const boxHeight = 0.05 * c.height;
+const colors = ['red', 'orange', 'green', 'yellow', 'blue']
 
 const numberOfBoxesInLineX = c.width / boxWidth;
-const numberOfBoxesInLineY = c.height / (2 * boxHeight);
+const numberOfBoxesInLineY = c.height / (3 * boxHeight);
 
 var tmpX = 0, tmpY = 0;
 var boxes = [];
@@ -34,7 +35,7 @@ for (var i = 0; i < numberOfBoxesInLineX; i++) {
     tmpY = 0;
 
     for (var j = 0; j < numberOfBoxesInLineY; j++) {
-        boxes.push([tmpX, tmpY]);
+        boxes.push([Math.floor(tmpX), Math.floor(tmpY), colors[getRandomInt(0, colors.length - 1)]]);
         tmpY += boxHeight;
     }
 
@@ -43,7 +44,18 @@ for (var i = 0; i < numberOfBoxesInLineX; i++) {
 
 // ----------------------------------------------------------------------------------------------------
 
+function getRandomInt(min, max) {
+    return Math.floor(Math.random() * (max - min + 1)) + min;
+}
+
 context.beginPath();
+
+function drawBoxes() {
+    for (var i = 0; i < boxes.length; i++) {
+        context.fillStyle = boxes[i][2];
+        context.fillRect(boxes[i][0], boxes[i][1], boxWidth, boxHeight);
+    }
+}
 
 // ----------------------------------------------------------------------------------------------------
 
@@ -52,6 +64,8 @@ context.beginPath();
 // ----------------------------------------------------------------------------------------------------
 
 function doJob() {
+    drawBoxes();
+
     clearInterval(timer);
     timer = setInterval(doJob, interval_time);
 }
@@ -88,5 +102,7 @@ function useDeviceMotionIOS() {
     })
 }
 
-document.onkeydown = move;
-timer = setInterval(doJob, interval_time);
+doJob();
+
+// document.onkeydown = move;
+// timer = setInterval(doJob, interval_time);
