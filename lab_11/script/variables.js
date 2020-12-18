@@ -17,3 +17,4 @@ var INTERVAL_TIME = 0.005;
 var timer;
 
 const colors = ['red', 'orange', 'green', 'yellow', 'blue'];
+var isBallMoving = false;

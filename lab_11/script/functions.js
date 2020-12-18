@@ -39,6 +39,8 @@ function move(e) {
         turn(playerMove.left);
     } else if (e.keyCode == RIGHT) {
         turn(playerMove.right);
+    } else if (e.keyCode == SPACE) {
+        isBallMoving = true;
     }
 }
 
@@ -80,4 +82,40 @@ function useDeviceMotionIOS() {
             turn(playerMove.right);
         }
     })
+}
+
+function drawBall() {
+    context.fillStyle = 'darkred';
+
+    context.beginPath();
+    context.arc(ball.positionX, ball.positionY, ball.radius, 0, 2 * Math.PI);
+    context.fill();
+}
+
+function resetBall() {
+    isBallMoving = false;
+    ball.positionX = player.positionX + player.width / 2;
+    ball.positionY = player.positionY - player.height / 2;
+}
+
+function updateBallPosition() {
+    if (isBallMoving) {
+        ball.positionX += ball.velX;
+        ball.positionY += ball.velY;
+
+        if (ball.positionY - ball.radius > c.height) {
+            resetBall();
+        } else if (ball.positionY - ball.radius <= 0) {
+            ball.velY *= -ball.bounce;
+            ball.positionY = ball.radius;
+        } else if (ball.positionX - ball.radius <= 0) {
+            ball.velX *= -ball.bounce;
+            ball.positionX = ball.radius;
+        } else if (ball.positionX + ball.radius >= c.width) {
+            ball.positionX = c.width - ball.radius;
+        }
+            
+        ball.positionX += ball.velX;
+        ball.positionY += ball.velY
+    }
 }

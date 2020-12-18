@@ -30,14 +30,24 @@ var tmpX = 0, tmpY = 0;
 
 prepareBoxes();
 
+var ball = { 
+    radius: 10, 
+    bounce: 1, 
+    positionX: player.positionX + (player.width / 2), 
+    positionY: player.positionY - (player.height / 2), 
+    velX: 0.8, 
+    velY: -1 
+};
+
+
 // ----------------------------------------------------------------------------------------------------
 
 function mainFunctionOfGame() {
     drawBackground();
     drawBoxes();
     drawPlayer();
-
-
+    drawBall();
+    updateBallPosition();
     clearInterval(timer);
     timer = setInterval(mainFunctionOfGame, INTERVAL_TIME);
 }
