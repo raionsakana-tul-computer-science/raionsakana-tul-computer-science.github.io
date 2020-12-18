@@ -8,23 +8,28 @@ function prepareBoxes() {
 
         for (var j = 0; j < numberOfBoxesInLineY; j++) {
             boxes.push([Math.floor(tmpX), Math.floor(tmpY), colors[getRandomInt(0, colors.length - 1)]]);
-            tmpY += boxHeight;
+            tmpY += box.height;
         }
 
-        tmpX += boxWidth;
+        tmpX += box.width;
     }
 }
 
 function drawBoxes() {
     for (var i = 0; i < boxes.length; i++) {
         context.fillStyle = boxes[i][2];
-        context.fillRect(boxes[i][0], boxes[i][1], boxWidth, boxHeight);
+        context.fillRect(boxes[i][0], boxes[i][1], box.width, box.height);
     }
 }
 
 function drawBackground() {
     context.fillStyle = 'lightyellow';
     context.fillRect(0, 0, c.width, c.height);
+}
+
+function drawPlayer() {
+    context.fillStyle = 'darkblue';
+    context.fillRect(player.positionX, player.positionY, player.width, player.height);
 }
 
 function permission() {

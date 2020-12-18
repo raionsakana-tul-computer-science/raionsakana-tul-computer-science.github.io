@@ -8,3 +8,5 @@ const PROBABILITY = 0.005;
 
 var accelerometer = {left: -2, right: 2, speedUp: 7, speedDown: 4};
 var timer;
+
+const colors = ['red', 'orange', 'green', 'yellow', 'blue'];

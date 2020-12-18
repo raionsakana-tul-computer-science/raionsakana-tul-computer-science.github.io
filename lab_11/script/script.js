@@ -8,15 +8,25 @@ context.font = "15px Arial";
 
 // ----------------------------------------------------------------------------------------------------
 
-const boxWidth = 0.05 * c.width;
-const boxHeight = 0.05 * c.height;
-const colors = ['red', 'orange', 'green', 'yellow', 'blue']
+var player = {
+    width: 0.1 * c.width,
+    height: 0.02 * c.height,
+    positionX: (c.width / 2) - (0.1 * c.width / 2),
+    positionY: c.height - 40 
+};
 
-const numberOfBoxesInLineX = c.width / boxWidth;
-const numberOfBoxesInLineY = c.height / (3 * boxHeight);
+// ----------------------------------------------------------------------------------------------------
+
+var box = {
+    width: 0.05 * c.width,
+    height: 0.05 * c.height,
+};
+
+const numberOfBoxesInLineX = c.width / box.width;
+const numberOfBoxesInLineY = c.height / (3 * box.height);
+const boxes = [];
 
 var tmpX = 0, tmpY = 0;
-var boxes = [];
 
 prepareBoxes();
 
@@ -25,7 +35,9 @@ prepareBoxes();
 function mainFunctionOfGame() {
     drawBackground();
     drawBoxes();
+    drawPlayer();
 
+    
     clearInterval(timer);
     timer = setInterval(mainFunctionOfGame, interval_time);
 }
