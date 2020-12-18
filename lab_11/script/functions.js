@@ -104,7 +104,7 @@ function updateBallPosition() {
         ball.positionY += ball.velY;
 
         if (ball.positionY - ball.radius > c.height) {
-            // resetBall();
+            // resetBall(); 
         } else if (ball.positionY - ball.radius <= 0) {
             ball.velY *= -ball.bounce;
             ball.positionY = ball.radius;
