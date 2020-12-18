@@ -22,6 +22,11 @@ function drawBoxes() {
     }
 }
 
+function drawBackground() {
+    context.fillStyle = 'lightyellow';
+    context.fillRect(0, 0, c.width, c.height);
+}
+
 function permission() {
     if (typeof(DeviceMotionEvent) !== "undefined" && typeof(DeviceMotionEvent.requestPermission) === "function") {
         DeviceMotionEvent.requestPermission().then(response => {

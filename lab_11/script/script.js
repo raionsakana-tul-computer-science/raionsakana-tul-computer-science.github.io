@@ -23,10 +23,11 @@ prepareBoxes();
 // ----------------------------------------------------------------------------------------------------
 
 function mainFunctionOfGame() {
+    drawBackground();
     drawBoxes();
 
     clearInterval(timer);
-    timer = setInterval(doJob, interval_time);
+    timer = setInterval(mainFunctionOfGame, interval_time);
 }
 
 context.beginPath();
