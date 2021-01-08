@@ -30,6 +30,8 @@ window.addEventListener("orientationchange", function() {
 }, false);
 
 
+generateMaze();
+
 context.beginPath();
 mainFunctionOfGame();
 document.onkeydown = move;

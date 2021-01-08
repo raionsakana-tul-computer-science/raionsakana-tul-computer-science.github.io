@@ -2,6 +2,21 @@ function getRandomInt(min, max) {
     return Math.floor(Math.random() * (max - min + 1)) + min;
 }
 
+function generateMaze() {
+    var numberOfPartsX = window.innerWidth / 100;
+    var numberOfPartsY = window.innerHeight / 100;
+
+    for (var i = 0; i < numberOfPartsX; i++) {
+        maze.push([i, 0]);
+        maze.push([i, numberOfPartsY - 1]);
+    }
+    
+    for (var i = 0; i < numberOfPartsY; i++) {
+        maze.push([0, i]);
+        maze.push([numberOfPartsX - 1, i]);
+    }
+}
+
 function drawBackground() {
     context.fillStyle = 'lightyellow';
     context.fillRect(0, 0, c.width, c.height);
