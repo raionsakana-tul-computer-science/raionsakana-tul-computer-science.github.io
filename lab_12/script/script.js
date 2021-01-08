@@ -52,6 +52,12 @@ function mainFunctionOfGame() {
     timer = setInterval(mainFunctionOfGame, INTERVAL_TIME);
 }
 
+window.addEventListener("orientationchange", function() {
+    // Announce the new orientation number
+    alert(window.orientation);
+}, false);
+
 context.beginPath();
 mainFunctionOfGame();
 document.onkeydown = move;
+
