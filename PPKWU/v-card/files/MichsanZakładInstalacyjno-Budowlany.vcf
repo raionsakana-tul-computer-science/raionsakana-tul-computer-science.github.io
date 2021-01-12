@@ -1,0 +1,8 @@
+BEGIN:VCARD
+VERSION:4.0
+ORG:Michsan Zakład Instalacyjno-Budowlany
+TEL;TYPE=work;VALUE=uri:tel:+48 (34) 362 89 45
+EMAIL:michsan@onet.pl
+ADR;TYPE=WORK;LABEL="ul. Warmińska 7, 42-202 Częstochowa"
+URL:http://www.transpol.czest.pl/index.html
+END:VCARD

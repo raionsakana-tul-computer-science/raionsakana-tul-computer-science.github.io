@@ -1,0 +1,8 @@
+BEGIN:VCARD
+VERSION:4.0
+ORG:Kamil Przęczek
+TEL;TYPE=work;VALUE=uri:tel:+48 516 765 572
+EMAIL:kamilprzeczek@interia.pl
+ADR;TYPE=WORK;LABEL="32-020 Grabówki 12"
+URL:http://www.hydraulik-instalacje-krakow.pl
+END:VCARD

@@ -1,0 +1,8 @@
+BEGIN:VCARD
+VERSION:4.0
+ORG:Gamar Marek Garliński
+TEL;TYPE=work;VALUE=uri:tel:+48 601 746 608
+EMAIL:marekgarlinski@wp.pl
+ADR;TYPE=WORK;LABEL="ul. Daszyńskiego 10 F/3, 56-400 Oleśnica"
+URL:http://www.gamar.olesnica.pl
+END:VCARD

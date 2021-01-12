@@ -1,0 +1,8 @@
+BEGIN:VCARD
+VERSION:4.0
+ORG:Łukasz Noga Prima Sort
+TEL;TYPE=work;VALUE=uri:tel:+48 536 792 675
+EMAIL:kontakt@primasortinstalacje.pl
+ADR;TYPE=WORK;LABEL="al. Dębowa 21, 32-005 Niepołomice"
+URL:http://www.primasortinstalacje.pl
+END:VCARD

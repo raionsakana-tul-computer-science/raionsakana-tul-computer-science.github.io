@@ -1,0 +1,8 @@
+BEGIN:VCARD
+VERSION:4.0
+ORG:Ilmar Technika Grzewcza Jerzy Ilków
+TEL;TYPE=work;VALUE=uri:tel:+48 601 787 666
+EMAIL:ilmar@wp.pl
+ADR;TYPE=WORK;LABEL="pl. Stanisława Staszica 15/8, 50-238 Wrocław"
+URL:http://www.ilmar.com.pl/
+END:VCARD

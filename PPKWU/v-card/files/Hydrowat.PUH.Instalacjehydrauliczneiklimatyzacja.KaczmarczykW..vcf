@@ -1,0 +1,8 @@
+BEGIN:VCARD
+VERSION:4.0
+ORG:Hydrowat. PUH. Instalacje hydrauliczne i klimatyzacja. Kaczmarczyk W.
+TEL;TYPE=work;VALUE=uri:tel:+48 501 694 091
+EMAIL:hydrowat@gmail.com
+ADR;TYPE=WORK;LABEL="ul. Cyganerii 13/31, 43-100 Tychy"
+URL:http://www.hydrowat.com
+END:VCARD

@@ -1,0 +1,8 @@
+BEGIN:VCARD
+VERSION:4.0
+ORG:Technika Grzewcza I Sanitarna Instal Paweł Szeląg
+TEL;TYPE=work;VALUE=uri:tel:+48 515 079 481
+EMAIL:tgis.instal@gmail.com
+ADR;TYPE=WORK;LABEL="24-120 Zbędowice 13"
+URL:http://instalpulawy.pl/
+END:VCARD

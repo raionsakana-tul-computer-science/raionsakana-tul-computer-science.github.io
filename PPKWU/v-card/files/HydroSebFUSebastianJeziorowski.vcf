@@ -1,0 +1,8 @@
+BEGIN:VCARD
+VERSION:4.0
+ORG:Hydro Seb FU Sebastian Jeziorowski
+TEL;TYPE=work;VALUE=uri:tel:+48 502 220 475
+EMAIL:hydroseb@op.pl
+ADR;TYPE=WORK;LABEL="42-244 Srocko 64"
+URL:http://www.hydraulik-zapchania.pl
+END:VCARD

@@ -1,0 +1,8 @@
+BEGIN:VCARD
+VERSION:4.0
+ORG:M-Instalacje Michał Filipkiewicz
+TEL;TYPE=work;VALUE=uri:tel:+48 508 455 843
+EMAIL:instalacje.filipkiewicz@gmail.com
+ADR;TYPE=WORK;LABEL="ul. Słomiana 4/44, 30-316 Kraków"
+URL:http://www.m-instalacje.pl
+END:VCARD

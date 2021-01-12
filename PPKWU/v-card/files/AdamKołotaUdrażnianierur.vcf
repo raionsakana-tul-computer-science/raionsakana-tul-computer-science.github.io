@@ -1,0 +1,8 @@
+BEGIN:VCARD
+VERSION:4.0
+ORG:Adam Kołota Udrażnianie rur
+TEL;TYPE=work;VALUE=uri:tel:+48 781 266 854
+EMAIL:joanna-kolota@wp.pl
+ADR;TYPE=WORK;LABEL="ul. Zaciszna 30A, 05-230 Kobyłka"
+URL:http://www.udraznianierurkobylka.pl
+END:VCARD
