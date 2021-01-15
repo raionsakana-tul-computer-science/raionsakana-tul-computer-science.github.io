@@ -14,6 +14,7 @@ const maze = [];
 
 function mainFunctionOfGame() {
     drawBackground();
+    drawBall();
     clearInterval(timer);
     timer = setInterval(mainFunctionOfGame, INTERVAL_TIME);
 }

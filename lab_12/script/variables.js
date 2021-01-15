@@ -12,8 +12,6 @@ const playerMove = {
     right: MOVE
 };
 
-
-
 var accelerometer = {left: -2, right: 2, speedUp: 7, speedDown: 4};
 var INTERVAL_TIME = 0.005;
 var timer;
@@ -26,3 +24,12 @@ var sizeY = (window.innerHeight - 45) / 100;
 
 var numberOfPartsX = Math.floor(sizeX * 100);
 var numberOfPartsY = Math.floor(sizeY * 100);
+
+var ball = { 
+    radius: sizeY, 
+    bounce: 1, 
+    positionX: numberOfPartsX * 0.05, 
+    positionY: numberOfPartsY * 0.02, 
+    velX: 0.8, 
+    velY: -1 
+};
