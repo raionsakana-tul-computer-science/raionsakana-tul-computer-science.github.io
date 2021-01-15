@@ -18,18 +18,6 @@ function mainFunctionOfGame() {
     timer = setInterval(mainFunctionOfGame, INTERVAL_TIME);
 }
 
-window.addEventListener("orientationchange", function() {
-    if(window.orientation == 0) // Portrait
-    {
-      $("button").css({"background-color":"blue"});
-    }
-    else // Landscape
-    {
-      $("button").css({"background-color":"green"});
-    }
-}, false);
-
-
 generateMaze();
 
 context.beginPath();

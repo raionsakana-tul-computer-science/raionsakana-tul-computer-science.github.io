@@ -18,3 +18,9 @@ var timer;
 
 const colors = ['red', 'orange', 'green', 'yellow', 'blue'];
 var isBallMoving = false;
+
+var sizeX = window.innerWidth / 100;
+var sizeY = (window.innerHeight - 145) / 100;
+
+var numberOfPartsX = Math.floor(sizeX * 100);
+var numberOfPartsY = Math.floor(sizeY * 100);
