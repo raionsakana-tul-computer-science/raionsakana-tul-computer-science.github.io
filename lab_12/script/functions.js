@@ -17,10 +17,6 @@ function generateMaze() {
     }
 
     var startX = 0.2 * numberOfPartsX;
-    for (var i = 0; i < 0.2 * numberOfPartsY; i++) {
-        maze.push([startX, i]);
-    }
-
     for (var i = 0.8 * numberOfPartsY; i < numberOfPartsY; i++) {
         maze.push([startX, i]);
     }
@@ -93,12 +89,12 @@ function generateMaze() {
     }
 
     var startY = 0.1 * numberOfPartsY;
-    for (var i = 0.05 * numberOfPartsX; i < 0.15 * numberOfPartsX; i++) {
+    for (var i = 0.1 * numberOfPartsX; i < 0.2 * numberOfPartsX; i++) {
         maze.push([i, startY]);
     }
 
-    var startY = 0.1 * numberOfPartsY;
-    for (var i = 0.05 * numberOfPartsX; i < 0.15 * numberOfPartsX; i++) {
+    var startY = 0.2 * numberOfPartsY;
+    for (var i = 0.2 * numberOfPartsX; i < 0.3 * numberOfPartsX; i++) {
         maze.push([i, startY]);
     }
 

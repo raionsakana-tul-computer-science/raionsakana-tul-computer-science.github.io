@@ -12,6 +12,8 @@ const playerMove = {
     right: MOVE
 };
 
+
+
 var accelerometer = {left: -2, right: 2, speedUp: 7, speedDown: 4};
 var INTERVAL_TIME = 0.005;
 var timer;
