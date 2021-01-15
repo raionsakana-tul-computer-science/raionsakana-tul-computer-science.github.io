@@ -205,17 +205,25 @@ function move(e) {
     e.preventDefault();
 
     if (e.keyCode == LEFT) {
-        turn(playerMove.left);
+        turnLeftRight(playerMove.left);
     } else if (e.keyCode == RIGHT) {
-        turn(playerMove.right);
-    } else if (e.keyCode == SPACE) {
-        isBallMoving = true;
+        turnLeftRight(playerMove.right);
+    } else if (e.keyCode == UP) {
+        turnUpDown(playerMove.up);
+    } else if (e.keyCode == DOWN) {
+        turnUpDown(playerMove.down);
     }
 }
 
-function turn(move) {
-    if ((player.positionX + move) > 0 && ((player.positionX + player.width) + move) < c.width) {
-        player.positionX += move;
+function turnLeftRight(move) {
+    if ((ball.positionX - ball.radius + move) > 0 && ((ball.positionX + ball.radius) + move) < c.width) {
+        ball.positionX += move;
+    }
+}
+
+function turnUpDown(move) {
+    if ((ball.positionY - ball.radius + move) > 0 && ((ball.positionY + ball.radius) + move) < c.height) {
+        ball.positionY += move;
     }
 }
 
@@ -236,9 +244,9 @@ function permission() {
 function useDeviceMotionAndroid() {
     window.addEventListener("deviceorientation", (event) => {
         if (event.gamma > accelerometer.left) {
-            turn(playerMove.right);
+            turnLeftRight(playerMove.right);
         } else if (event.gamma < accelerometer.right) {
-            turn(playerMove.left);
+            turnLeftRight(playerMove.left);
         }
     })
 }
@@ -246,9 +254,9 @@ function useDeviceMotionAndroid() {
 function useDeviceMotionIOS() {
     window.addEventListener("deviceorientation", (event) => {
         if (event.gamma < accelerometer.left) {
-            turn(playerMove.left);
+            turnLeftRight(playerMove.left);
         } else if (event.gamma > accelerometer.right) {
-            turn(playerMove.right);
+            turnLeftRight(playerMove.right);
         }
     })
 }
@@ -259,32 +267,4 @@ function drawBall() {
     context.beginPath();
     context.arc(ball.positionX, ball.positionY, ball.radius, 0, 2 * Math.PI);
     context.fill();
-}
-
-function resetBall() {
-    isBallMoving = false;
-    ball.positionX = player.positionX + player.width / 2;
-    ball.positionY = player.positionY - player.height / 2;
-}
-
-function updateBallPosition() {
-    if (isBallMoving) {
-        ball.positionX += ball.velX;
-        ball.positionY += ball.velY;
-
-        if (ball.positionY - ball.radius > c.height) {
-            // resetBall(); 
-        } else if (ball.positionY - ball.radius <= 0) {
-            ball.velY *= -ball.bounce;
-            ball.positionY = ball.radius;
-        } else if (ball.positionX - ball.radius <= 0) {
-            ball.velX *= -ball.bounce;
-            ball.positionX = ball.radius;
-        } else if (ball.positionX + ball.radius >= c.width) {
-            ball.positionX = c.width - ball.radius;
-        }
-            
-        ball.positionX += ball.velX;
-        ball.positionY += ball.velY
-    }
 }

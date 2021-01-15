@@ -9,7 +9,9 @@ const MOVE = 20;
 
 const playerMove = {
     left: -MOVE,
-    right: MOVE
+    right: MOVE,
+    up: -MOVE,
+    down: MOVE
 };
 
 var accelerometer = {left: -2, right: 2, speedUp: 7, speedDown: 4};
@@ -17,7 +19,6 @@ var INTERVAL_TIME = 0.005;
 var timer;
 
 const colors = ['red', 'orange', 'green', 'yellow', 'blue'];
-var isBallMoving = false;
 
 var sizeX = window.innerWidth / 100;
 var sizeY = (window.innerHeight - 45) / 100;
