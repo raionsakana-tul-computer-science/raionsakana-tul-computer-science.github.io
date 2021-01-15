@@ -1,7 +1,7 @@
 var c = document.getElementById("myCanvas");
 
 c.width = window.innerWidth;
-c.height = window.innerHeight - 145;
+c.height = window.innerHeight - 45;
 
 var context = c.getContext("2d");
 context.font = "15px Arial";
