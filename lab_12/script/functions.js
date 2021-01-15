@@ -247,6 +247,12 @@ function useDeviceMotionAndroid() {
             turnLeftRight(playerMove.right);
         } else if (event.gamma < accelerometer.right) {
             turnLeftRight(playerMove.left);
+        }         
+        
+        if (event.beta > accelerometer.left) {
+            turnUpDown(playerMove.right);
+        } else if (event.beta < accelerometer.right) {
+            turnUpDown(playerMove.left);
         }
     })
 }
@@ -257,6 +263,12 @@ function useDeviceMotionIOS() {
             turnLeftRight(playerMove.left);
         } else if (event.gamma > accelerometer.right) {
             turnLeftRight(playerMove.right);
+        }
+
+        if (event.beta < accelerometer.left) {
+            turnUpDown(playerMove.right);
+        } else if (event.beta > accelerometer.right) {
+            turnUpDown(playerMove.left);
         }
     })
 }
