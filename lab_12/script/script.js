@@ -23,4 +23,4 @@ generateMaze();
 context.beginPath();
 mainFunctionOfGame();
 document.onkeydown = move;
-
+window.addEventListener('orientationchange', reload)

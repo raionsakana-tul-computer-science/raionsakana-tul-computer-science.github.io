@@ -197,6 +197,10 @@ function drawBackground() {
 
 }
 
+function reload() {
+    location.reload();
+}
+
 function move(e) {
     e.preventDefault();
 
