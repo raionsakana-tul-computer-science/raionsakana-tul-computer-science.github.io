@@ -265,6 +265,8 @@ function useDeviceMotionIOS() {
             turnLeftRight(playerMove.right);
         }
 
+        alert(event.beta)
+
         if (event.beta < accelerometer.left) {
             turnUpDown(playerMove.right);
         } else if (event.beta > accelerometer.right) {
